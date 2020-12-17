@@ -736,7 +736,15 @@
     if(event && [[event valueForKey:@"_fullscreen"] boolValue]){
         if (self.onFullScreen) {
             if (_nativeFullScreen && _landscapeOnFullScreen) {
-                [[UIDevice currentDevice] setValue: [NSNumber numberWithInteger: UIInterfaceOrientationLandscapeLeft] forKey:@"orientation"];
+                if ([[UIDevice currentDevice]orientation] == UIInterfaceOrientationPortrait){
+                    [[UIDevice currentDevice] setValue: [NSNumber numberWithInteger: UIInterfaceOrientationLandscapeLeft] forKey:@"orientation"];
+                }
+                if ([[UIDevice currentDevice]orientation] == UIInterfaceOrientationLandscapeLeft){
+                    [[UIDevice currentDevice] setValue: [NSNumber numberWithInteger: UIInterfaceOrientationLandscapeLeft] forKey:@"orientation"];
+                    }
+                    if ([[UIDevice currentDevice]orientation] == UIInterfaceOrientationLandscapeRight){
+                        [[UIDevice currentDevice] setValue: [NSNumber numberWithInteger: UIInterfaceOrientationLandscapeRight] forKey:@"orientation"];
+                    }
             }
             self.onFullScreen(@{});
         }
